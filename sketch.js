@@ -5,6 +5,8 @@ let myVideo;
 let otherVideo;
 let theRoom;
 
+let constraints = {audio: true, video: true};
+
 connect.addEventListener('click', function(e) {
     connectionStuff(roomName.value)
 })
@@ -15,7 +17,7 @@ function setup() {
 }
 
 function connectionStuff(roomName) {
-    myVideo = createCapture(VIDEO, 
+    myVideo = createCapture(constraints, 
       function(stream) {
         let p5l = new p5LiveMedia(this, "CAPTURE", stream, roomName);
         p5l.on('stream', gotStream);
